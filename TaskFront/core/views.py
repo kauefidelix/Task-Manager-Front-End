@@ -4,4 +4,5 @@ from django.http import HttpResponse
 # Create your views here.
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the TaskFront index.")
+    my_dict = {'insert_me': "Hello I am from views.py!"}
+    return render(request, 'index.html', context=my_dict)
