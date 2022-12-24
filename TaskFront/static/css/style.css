@@ -1,32 +1,41 @@
-html{
-    font-family: 'Roboto', sans-serif;
+html {
+    font-family: 'Nunito';
 }
-body{
+
+body {
     background-color: #130f0d;
-    color: #fff;
+    color: white;
 }
 
 .boards {
     display: flex;
-    margin-top: 16px;
+
+    margin-top: 32px;
 }
-.board{
-    background: #141316;
+
+.board {
+    background: #F4F5F7;
     border: 1px solid #FD951F11;
     border-radius: 4px;
+
     margin: 0 16px;
 }
+
 .board h3 {
-    color: #FD951Fcc;
     padding: 16px;
     margin: 0;
+    color: #5e6c84;
+    font-size: 12px;
 }
+
 .dropzone {
     padding: 16px;
     min-width: 282px;
     min-height: 200px;
 }
+
 .card {
+    background-color: #1A1A1C;
     padding: 16px;
     box-shadow: 0 2px 2px -1px #FD951Fcc;
     width: 250px;
@@ -34,22 +43,45 @@ body{
     border-radius: 4px;
     font-weight: 600;
     font-size: 18px;
-    background-color: #1A1A1C;
+    
 }
-.status{
+
+.status {
     width: 30px;
     height: 8px;
-    border-radius: 8px;
-    background-color: #FD951F;
+    background: gray;
     margin-bottom: 16px;
+    border-radius: 8px;
+}
+
+.status.green {
+    background: #23d2ac;
+}
+
+.status.blue {
+    background: #33adff;
+}
+
+.status.red {
+    background: red;
 }
 
 .highlight {
-    background-color: #97642959;
+    background-color: #FD951F08;
 }
-.highlight-green {
-    background-color: green;
-}
+
 .card, .dropzone {
-    transition: .4s;
+    transition: 400ms;
+}
+
+.is-dragging {
+    cursor: move;
+    opacity: 0.3;
+}
+
+.over {
+    background-color: #4cd13711;
+}
+.highlight-card {
+    background: blue;
 }
