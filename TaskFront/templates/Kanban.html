@@ -39,7 +39,7 @@
                                 <div class="assignee">{{card.assignee}}</div>
                                 <div class="days-on-column">
                                     {% if card.last_modified < today %}
-                                        {{ today|days:card.last_modified }}
+                                        {{ today|timesince:card.last_modified }}
                                     {% endif %}
                                 </div>
                             </div>
