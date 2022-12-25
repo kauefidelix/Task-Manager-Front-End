@@ -24,7 +24,29 @@
     <div class="board">
         <h3>Ready to Play</h3>
         <div class="dropzone">
-
+            {% for card in cards %}
+                {% if card.column == "ready-to-play"%}
+                    <div class="card" draggable="true">
+                        <div class="status green"></div>
+                        <div class="card-right">
+                            <div class="card-head">
+                                <div class="content">{{card.name}}</div>
+                            </div>
+                            <div class="card-body">
+                                <div class="epic-link">{{card.epic_link}}</div>
+                            </div>
+                            <div class="card-foot">
+                                <div class="assignee">{{card.assignee}}</div>
+                                <div class="days-on-column">
+                                    {% if card.last_modified < today %}
+                                        {{ today|days:card.last_modified }}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
         </div>
     </div>
     <div class="board">
