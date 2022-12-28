@@ -2,23 +2,29 @@
     <div class="board">
         <h3>Backlog</h3>
         <div class="dropzone">
-            <div class="card" draggable="true">
-                <div class="status green"></div>
-                <div class="card-right">
-                    <div class="card-head">
-                        <div class="content">refinar cards</div>
+            {% for card in cards %}
+                {% if card.column == "backlog"%}
+                    <div class="card" draggable="true">
+                        <div class="status green"></div>
+                        <div class="card-right">
+                            <div class="card-head">
+                                <div class="content">{{card.name}}</div>
+                            </div>
+                            <div class="card-body">
+                                <div class="epic-link">{{card.epic_link}}</div>
+                            </div>
+                            <div class="card-foot">
+                                <div class="assignee">{{card.assignee}}</div>
+                                <div class="days-on-column">
+                                    {% if card.last_modified < today %}
+                                        {{ today|timesince:card.last_modified }}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <div class="epic-link">epico</div>
-                    </div>
-                    <div class="card-foot">
-                        <div class="assignee">jose</div>
-                        <div class="days-on-column">1</div>
-                    </div>
-                </div>
-                
-                
-            </div>
+                {% endif %}
+            {% endfor %}
         </div>
     </div>
     <div class="board">
@@ -52,19 +58,85 @@
     <div class="board">
         <h3>In Progress</h3>
         <div class="dropzone">
-
+            {% for card in cards %}
+                {% if card.column == "in-progress"%}
+                    <div class="card" draggable="true">
+                        <div class="status green"></div>
+                        <div class="card-right">
+                            <div class="card-head">
+                                <div class="content">{{card.name}}</div>
+                            </div>
+                            <div class="card-body">
+                                <div class="epic-link">{{card.epic_link}}</div>
+                            </div>
+                            <div class="card-foot">
+                                <div class="assignee">{{card.assignee}}</div>
+                                <div class="days-on-column">
+                                    {% if card.last_modified < today %}
+                                        {{ today|timesince:card.last_modified }}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
         </div>
     </div>
     <div class="board">
         <h3>Ready for Deploy</h3>
         <div class="dropzone">
-
+            {% for card in cards %}
+                {% if card.column == "ready-for-deploy"%}
+                    <div class="card" draggable="true">
+                        <div class="status green"></div>
+                        <div class="card-right">
+                            <div class="card-head">
+                                <div class="content">{{card.name}}</div>
+                            </div>
+                            <div class="card-body">
+                                <div class="epic-link">{{card.epic_link}}</div>
+                            </div>
+                            <div class="card-foot">
+                                <div class="assignee">{{card.assignee}}</div>
+                                <div class="days-on-column">
+                                    {% if card.last_modified < today %}
+                                        {{ today|timesince:card.last_modified }}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
         </div>
     </div>
     <div class="board done">
         <h3>Done</h3>
         <div class="dropzone">
-
+            {% for card in cards %}
+                {% if card.column == "done"%}
+                    <div class="card" draggable="true">
+                        <div class="status green"></div>
+                        <div class="card-right">
+                            <div class="card-head">
+                                <div class="content">{{card.name}}</div>
+                            </div>
+                            <div class="card-body">
+                                <div class="epic-link">{{card.epic_link}}</div>
+                            </div>
+                            <div class="card-foot">
+                                <div class="assignee">{{card.assignee}}</div>
+                                <div class="days-on-column">
+                                    {% if card.last_modified < today %}
+                                        {{ today|timesince:card.last_modified }}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
         </div>
     </div>
 </div>
