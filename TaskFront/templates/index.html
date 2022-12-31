@@ -1,5 +1,17 @@
 {% extends "base.html" %}
 {% block title %}Task Front{% endblock %}
 {% block content %}
-    {% include "Kanban.html" %}
+    <nav>
+        <!-- Navbar content goes here -->
+        {% include "navbar.html" %}
+    </nav>
+    <aside>
+        <!-- Sidebar content goes here -->
+        {% include "sidebar.html" %}
+    </aside>
+    <main>
+        <!-- Main content goes here -->
+        {% include "Kanban.html" %}
+        {% include "card.html" %}
+    </main>
 {% endblock %}

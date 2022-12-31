@@ -19,6 +19,8 @@ body {
     border: 1px solid #FD951F11;
     border-radius: 4px;
     margin: 0 16px;
+    flex-grow: 1;
+    width: calc(100% - 200px);
 }
 
 .board h3 {
@@ -30,8 +32,9 @@ body {
 
 .dropzone {
     padding: 16px;
-    min-width: 282px;
-    min-height: 200px;
+    min-width: 200px;
+    min-height: 300px;
+    flex-grow: 1;
 }
 
 .card {
@@ -152,3 +155,93 @@ body {
     display: flex;
     flex-direction: column;
   }
+  
+  /* Style the sidebar */
+  aside {
+    position: fixed; /* Keep the sidebar fixed to the left of the page */
+    top: 50px; /* Leave space for the navbar */
+    left: 0;
+    bottom: 0;
+    width: 200px;
+    background-color: #333;
+    color: #fff;
+  }
+  
+  /* Style the main content area */
+  main {
+    margin-left: 200px; /* Leave space for the sidebar */
+    margin-top: 50px; /* Leave space for the navbar */
+    position: relative;
+    right: 0;
+    bottom: 0;
+  }
+  /* Style the navbar */
+
+  .navbar {
+    display: flex; /* Use flexbox layout for the navbar */
+    justify-content: space-between; /* Space the navbar items evenly */
+    align-items: center; /* Vertically center the navbar items */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .navbar-nav {
+    display: flex; /* Use flexbox layout for the navbar links */
+  }
+  
+  .nav-item {
+    list-style: none; /* Remove the default bullet points from the navbar links */
+  }
+  
+  .nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 0 20px;
+  }
+  
+  .nav-link:hover {
+    background-color: #444;
+  }
+
+  .kanban {
+    display: flex; /* Use flexbox layout for the Kanban board */
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 32px;
+    margin-left: 232px;
+  }
+
+  /* Style the detailed view of the card */
+.card-detail {
+    position: fixed; /* Keep the detailed view fixed in the center of the page */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    box-shadow: 0 3px 4px -1px #727272cc;
+    padding: 16px;
+    display: none; /* Hide the detailed view by default */
+  }
+  
+  /* Style the close button */
+  .close-button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+  }
+  
+  .close-button:hover {
+    background-color: #444;
+  }
+  
+  
+  
+  

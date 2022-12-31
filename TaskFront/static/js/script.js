@@ -19,7 +19,15 @@ function setactive() {
     log('CARD: onClick ')
     cards.forEach( card => card.classList.remove('highlight-card'))
     this.classList.add('highlight-card')
+    const cardDetail = document.querySelector('.card-detail')
+    cardDetail.style.display = 'block'
 }
+const closeButton = document.querySelector('.close-button');
+
+closeButton.addEventListener('click', event => {
+  const cardDetail = document.querySelector('.card-detail');
+  cardDetail.style.display = 'none';
+});
 
 
 function dragstart() {
