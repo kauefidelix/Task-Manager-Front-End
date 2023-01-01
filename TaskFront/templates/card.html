@@ -1,6 +1,101 @@
 <!-- Detailed view of the card -->
-<div class="card-detail">
-    <h3>Card name</h3>
-    <p>Card description</p>
-    <button class="close-button">Close</button>
-</div>
+<div class="card-detail" data-card-id="{{ card.card_id }}">
+    <!-- Render the form fields -->
+    <form method="post" class="card-form">
+        {% csrf_token %}
+        <!-- Title field -->
+        <div class="form-group">
+          {{ form.name.label_tag }}
+          {{ form.name }}
+        </div>
+    
+        <!-- Content field -->
+        <div class="form-group">
+          {{ form.content.label_tag }}
+          {{ form.content }}
+        </div>
+    
+        <!-- Other fields -->
+        <div class="form-group form-column">
+          <!-- Creation date field -->
+          <div class="form-field">
+            {{ form.creation_date.label_tag }}
+            {{ form.creation_date }}
+          </div>
+    
+          <!-- Last modified field -->
+          <div class="form-field">
+            {{ form.last_modified.label_tag }}
+            {{ form.last_modified }}
+          </div>
+    
+          <!-- Column field -->
+          <div class="form-field">
+            {{ form.column.label_tag }}
+            {{ form.column }}
+          </div>
+    
+          <!-- Assignee field -->
+          <div class="form-field">
+            {{ form.assignee.label_tag }}
+            {{ form.assignee }}
+          </div>
+    
+          <!-- Card type field -->
+          <div class="form-field">
+            {{ form.card_type.label_tag }}
+            {{ form.card_type }}
+          </div>
+    
+          <!-- Epic link field -->
+          <div class="form-field">
+            {{ form.epic_link.label_tag }}
+            {{ form.epic_link }}
+          </div>
+        </div>
+    
+        <button type="submit" class="save-button">Save</button>
+      </form>
+  
+    <!-- Add a JavaScript event listener to handle double clicks -->
+    <script>
+      // Get the form and save button elements
+      const cardForm = document.querySelector('.card-form');
+      const saveButton = document.querySelector('.save-button');
+      
+  
+      // Add a double click event listener to the form fields
+      cardForm.addEventListener('dblclick', event => {
+        // Get the target element (the field that was double clicked)
+        const target = event.target;
+  
+        // Make the field editable
+        target.contentEditable = true;
+  
+        // Show the save button
+        saveButton.style.display = 'inline-block';
+      });
+  
+      // Add a submit event listener to the form
+      cardForm.addEventListener('submit', event => {
+        event.preventDefault(); // Prevent the form from being submitted
+  
+        // Get the card id from the data attribute
+        const cardId = event.target.parentElement.dataset.cardId;
+  
+        // Send an AJAX request to the server to update the card
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '/update_card/');
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onload = () => {
+          if (xhr.status === 200) {
+            // Update the card in the page
+            const card = document.querySelector(`[data-card-id="${cardId}"]`);
+            card.innerHTML = xhr.responseText;
+          }
+        };
+        xhr.send(`card_id=${cardId}&${cardForm.serialize()}`);
+      });
+    </script>
+  </div>
+  
