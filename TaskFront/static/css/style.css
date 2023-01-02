@@ -17,9 +17,10 @@ body {
 .board {
     background: #F4F5F7;
     border: 1px solid #FD951F11;
-    border-radius: 10px;
+    border-radius: 4px;
     margin: 0 16px;
-    box-shadow: 0 2px 10px rgba(71, 71, 71, 0.2);
+    flex-grow: 1;
+    width: calc(100% - 200px);
 }
 
 .board h3 {
@@ -31,8 +32,9 @@ body {
 
 .dropzone {
     padding: 16px;
-    min-width: 282px;
-    min-height: 600px;
+    min-width: 200px;
+    min-height: 300px;
+    flex-grow: 1;
 }
 
 .card {
