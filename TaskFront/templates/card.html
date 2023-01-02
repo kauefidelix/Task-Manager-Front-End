@@ -7,6 +7,7 @@
         <div class="form-group">
           {{ form.name.label_tag }}
           {{ form.name }}
+          <div class="card-title">{{card.name}}</div>
         </div>
     
         <!-- Content field -->
@@ -57,45 +58,6 @@
         <button type="submit" class="save-button">Save</button>
       </form>
   
-    <!-- Add a JavaScript event listener to handle double clicks -->
-    <script>
-      // Get the form and save button elements
-      const cardForm = document.querySelector('.card-form');
-      const saveButton = document.querySelector('.save-button');
-      
-  
-      // Add a double click event listener to the form fields
-      cardForm.addEventListener('dblclick', event => {
-        // Get the target element (the field that was double clicked)
-        const target = event.target;
-  
-        // Make the field editable
-        target.contentEditable = true;
-  
-        // Show the save button
-        saveButton.style.display = 'inline-block';
-      });
-  
-      // Add a submit event listener to the form
-      cardForm.addEventListener('submit', event => {
-        event.preventDefault(); // Prevent the form from being submitted
-  
-        // Get the card id from the data attribute
-        const cardId = event.target.parentElement.dataset.cardId;
-  
-        // Send an AJAX request to the server to update the card
-        const xhr = new XMLHttpRequest();
-        xhr.open('POST', '/update_card/');
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onload = () => {
-          if (xhr.status === 200) {
-            // Update the card in the page
-            const card = document.querySelector(`[data-card-id="${cardId}"]`);
-            card.innerHTML = xhr.responseText;
-          }
-        };
-        xhr.send(`card_id=${cardId}&${cardForm.serialize()}`);
-      });
-    </script>
+   
   </div>
   

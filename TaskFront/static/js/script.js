@@ -22,12 +22,6 @@ function setactive() {
     const cardDetail = document.querySelector('.card-detail')
     cardDetail.style.display = 'block'
 }
-const closeButton = document.querySelector('.close-button');
-
-closeButton.addEventListener('click', event => {
-  const cardDetail = document.querySelector('.card-detail');
-  cardDetail.style.display = 'none';
-});
 
 
 function dragstart() {
