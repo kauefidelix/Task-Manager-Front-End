@@ -275,6 +275,17 @@ body {
     color: #333;
   }
 
+  .card-modal-content {
+    width: 80%;
+    float: left;
+  }
+  
+  .card-modal-info {
+    width: 20%;
+    float: right;
+  }
+  
+
   
 
 
