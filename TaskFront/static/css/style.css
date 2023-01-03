@@ -12,6 +12,9 @@ body {
     flex-direction: row;
     justify-content: center;
     margin-top: 32px;
+    height: 100%;
+    overflow: auto;
+    width: 100%;
 }
 
 .board {
@@ -21,6 +24,8 @@ body {
     margin: 0 16px;
     flex-grow: 1;
     width: calc(100% - 200px);
+    height: 100%;
+    width: 100%;
 }
 
 .board h3 {
@@ -35,6 +40,7 @@ body {
     min-width: 200px;
     min-height: 300px;
     flex-grow: 1;
+    
 }
 
 .card {
@@ -214,35 +220,70 @@ body {
     flex-direction: row;
     justify-content: center;
     margin-top: 32px;
-    margin-left: 232px;
+    width: 100%;
+    height: 100%;
   }
 
-  /* Style the detailed view of the card */
-.card-detail {
-    position: fixed; /* Keep the detailed view fixed in the center of the page */
+  #cardModal {
+    position: fixed;
     top: 50%;
     left: 50%;
-    width: 80%;
-    height: 80%;
     transform: translate(-50%, -50%);
+    width: 70%;
+    height: 70%;
     background-color: #fff;
-    box-shadow: 0 3px 4px -1px #727272cc;
-    padding: 16px;
-    display: none; /* Hide the detailed view by default */
+    display: none;
+    z-index: 10;
+    padding: 2%;
+    border-radius: 10px;
+  }
+
+  #cardModal .card-detail {
+    color: #333;
+  }
+
+  .backdrop {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 5;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s linear 0.25s, opacity 0.25s 0s;
   }
   
-  /* Style the close button */
-  .close-button {
-    background-color: #333;
-    color: #fff;
-    border: none;
-    padding: 8px 16px;
+  .backdrop.show {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s linear 0s, opacity 0.25s 0s;
+  }
+
+  .modal .close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ccc;
     cursor: pointer;
   }
-  
-  .close-button:hover {
-    background-color: #444;
+
+  .modal .close:hover {
+    color: #333;
   }
+
+  
+
+
+
+  
+
+  
+  
+ 
   
   
   

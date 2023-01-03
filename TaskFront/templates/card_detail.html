@@ -1,0 +1,23 @@
+<div class="card-detail">
+    <h1>{{ card.name }}</h1>
+    <p>{{ card.content }}</p>
+    <div class="card-info">
+      <p>Created on {{ card.creation_date }}</p>
+      <p>Last modified on {{ card.last_modified }}</p>
+      <p>Assigned to {{ card.assignee }}</p>
+    </div>
+</div>
+
+<!-- Detailed view of the card -->
+<div class="card-detail" data-card-id="{{ card.card_id }}">
+    <div class="card-title"><h1>{{ card.name }}</h1></div>
+    <div class="card-content">{{ card.content }}</div>
+    <div class="card-info">
+      <div class="card-column">{{ card.column }}</div>
+      <div class="card-creation-date">{{ card.creation_date }}</div>
+      <div class="card-last-modified">{{ card.last_modified }}</div>
+      <div class="card-assignee">{{ card.assignee }}</div>
+      <div class="card-type">{{ card.card_type }}</div>
+      <div class="card-epic-link">{{ card.epic_link }}</div>
+    </div>
+  </div>

@@ -5,7 +5,7 @@
             <div class="dropzone">
                 {% for card in cards %}
                     {% if card.column == "backlog"%}
-                        <div class="card" draggable="true">
+                        <div class="card" draggable="true" data-card-id="{{ card.card_id }}">
                             <div class="status green"></div>
                             <div class="card-right">
                                 <div class="card-head">
@@ -33,7 +33,7 @@
             <div class="dropzone">
                 {% for card in cards %}
                     {% if card.column == "ready-to-play"%}
-                        <div class="card" draggable="true">
+                        <div class="card" draggable="true" data-card-id="{{ card.card_id }}">
                             <div class="status green"></div>
                             <div class="card-right">
                                 <div class="card-head">
@@ -61,7 +61,7 @@
             <div class="dropzone">
                 {% for card in cards %}
                     {% if card.column == "in-progress"%}
-                        <div class="card" draggable="true">
+                        <div class="card" draggable="true" data-card-id="{{ card.card_id }}">
                             <div class="status green"></div>
                             <div class="card-right">
                                 <div class="card-head">
@@ -89,7 +89,7 @@
             <div class="dropzone">
                 {% for card in cards %}
                     {% if card.column == "ready-for-deploy"%}
-                        <div class="card" draggable="true">
+                        <div class="card" draggable="true" data-card-id="{{ card.card_id }}">
                             <div class="status green"></div>
                             <div class="card-right">
                                 <div class="card-head">
@@ -117,7 +117,7 @@
             <div class="dropzone">
                 {% for card in cards %}
                     {% if card.column == "done"%}
-                        <div class="card" draggable="true">
+                        <div class="card" draggable="true" data-card-id="{{ card.card_id }}">
                             <div class="status green"></div>
                             <div class="card-right">
                                 <div class="card-head">

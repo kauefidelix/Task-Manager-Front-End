@@ -22,4 +22,5 @@ urlpatterns = [
     path('', views.index),
     path('first_app/', include('core.urls')),
     path('admin/', admin.site.urls),
+    path('cards/<uuid:card_id>/', views.card_detail, name='card_detail'),
 ]
