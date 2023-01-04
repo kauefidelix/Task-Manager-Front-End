@@ -48,7 +48,8 @@ function dragenter() {
     // log('DROPZONE: Enter in zone ')
 }
 
-function dragover() {
+function dragover(event) {
+    event.preventDefault();
     // this = dropzone
     this.classList.add('over')
 
@@ -59,38 +60,43 @@ function dragover() {
     this.appendChild(cardBeingDragged)
 }
 
+
 function dragleave() {
-    // log('DROPZONE: Leave ')
+    log('DROPZONE: Leave ')
     // this = dropzone
     this.classList.remove('over')
 
 }
 
 function drop() {
+    log('drop ')
     // this = dropzone
     this.classList.remove('over');
   
-    // Get the id of the card being dragged
-    const cardBeingDragged = document.querySelector('.is-dragging');
-    const cardId = cardBeingDragged.dataset.cardId;
-  
-    // Get the new column that the card was dropped in
-    const newColumn = this.parentNode.querySelector('h3').textContent.toLowerCase()
-  
-    // Update the column of the card on the server
-    updateCardColumn(cardId, newColumn);
+   // Get the id of the card being dragged
+   const cardBeingDragged = document.querySelector('.is-dragging');
+   const cardId = cardBeingDragged.dataset.cardId;
+ 
+   // Get the new column that the card was dropped in
+   const newColumn = this.parentNode.querySelector('h3').textContent.toLowerCase()
+ 
+   // Update the column of the card on the server
+   update_card_column(cardId, newColumn);
+   log(`Updating card ${cardId} to column ${newColumn}`)
 }
 
 function update_card_column(card_id, new_column) {
+    log(`Updating card ${card_id} to column ${new_column}`)
+    // Get the CSRF token
+    const csrfToken = document.querySelector('meta[name=csrf-token]').getAttribute('content');
+    
     // Send a PATCH request to the server to update the column of the card
-    fetch(`/cards/${card_id}/update_column`, {
+    fetch(`/cards/${card_id}/update_column/${new_column}`, {
         method: 'PATCH',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken
         },
-        body: JSON.stringify({
-            column: new_column
-        })
     })
     .then(response => response.json())
     .then(json => {
@@ -99,6 +105,7 @@ function update_card_column(card_id, new_column) {
         cardElement.dataset.column = new_column;
     });
 }
+
   
 
 function showCardModal() {
