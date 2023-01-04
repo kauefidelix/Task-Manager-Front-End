@@ -1,14 +1,3 @@
-
-window.addEventListener('resize', function() {
-    // Update the layout of the page
-    // Get the width of the window
-    const windowWidth = window.innerWidth;
-
-    // Set the width of the .boards element to be 100% of the window width
-    const boards = document.querySelector('.boards');
-    boards.style.width = `${windowWidth}px`;
-});
-
 /** help */
 function log(message) {
     console.log('> ' + message)
@@ -27,58 +16,9 @@ cards.forEach(card => {
     card.addEventListener('click', showCardModal)
 })
 
-function showCardModal() {
-  // Get card information
-  const cardId = this.dataset.cardId;
-  const cardInfoUrl = `/cards/${cardId}/`;
-
-  // Show modal
-  const cardModal = document.getElementById('cardModal');
-  cardModal.style.display = 'block';
-
-  // Get card container element
-  const cardContainer = document.getElementById('cardContainer');
-
-  // Show backdrop
-  const backdrop = document.querySelector('.backdrop');
-  backdrop.classList.add('show');
-
-  // Use fetch API to get card information from the server
-  fetch(cardInfoUrl)
-    .then(response => response.text())
-    .then(html => {
-      // Insert card information into card container element
-      cardContainer.innerHTML = html;
-
-      // Close modal when close button is clicked
-      const closeButton = cardContainer.querySelector('.close');
-      closeButton.addEventListener('click', closeCardModal);
-    });
-}
-const closeButton = document.querySelector('.close');
-
-closeButton.addEventListener('click', () => {
-  const cardModal = document.getElementById('cardModal');
-  closeCardModal();
-});
-
-function closeCardModal() {
-  // Hide modal
-  const cardModal = document.getElementById('cardModal');
-  cardModal.style.display = 'none';
-
-  // Hide backdrop
-  const backdrop = document.querySelector('.backdrop');
-  backdrop.classList.remove('show');
-}
-
-  
-  
-
-
 function dragstart() {
     // log('CARD: Start dragging ')
-    dropzones.forEach( dropzone => dropzone.classList.add('highlight'))
+    dropzones.forEach(dropzone => dropzone.classList.add('highlight'))
 
     // this = card
     this.classList.add('is-dragging')
@@ -90,14 +30,14 @@ function drag() {
 
 function dragend() {
     // log('CARD: Stop drag! ')
-    dropzones.forEach( dropzone => dropzone.classList.remove('highlight'))
+    dropzones.forEach(dropzone => dropzone.classList.remove('highlight'))
 
     // this = card
     this.classList.remove('is-dragging')
 }
 
 /** place where we will drop cards */
-dropzones.forEach( dropzone => {
+dropzones.forEach(dropzone => {
     dropzone.addEventListener('dragenter', dragenter)
     dropzone.addEventListener('dragover', dragover)
     dropzone.addEventListener('dragleave', dragleave)
@@ -131,3 +71,58 @@ function drop() {
     this.classList.remove('over')
 }
 
+function showCardModal() {
+    // Get card information
+    const cardId = this.dataset.cardId;
+    const cardInfoUrl = `/cards/${cardId}/`;
+
+    // Show modal
+    const cardModal = document.getElementById('cardModal');
+    cardModal.style.display = 'block';
+
+    // Get card container element
+    const cardContainer = document.getElementById('cardContainer');
+
+    // Show backdrop
+    const backdrop = document.querySelector('.backdrop');
+    backdrop.classList.add('show');
+
+    // Use fetch API to get card information from the server
+    fetch(cardInfoUrl)
+        .then(response => response.text())
+        .then(html => {
+            // Insert card information into card container element
+            cardContainer.innerHTML = html;
+
+            // Close modal when close button is clicked
+            const closeButton = cardContainer.querySelector('.close');
+            closeButton.addEventListener('click', closeCardModal);
+        });
+}
+const closeButton = document.querySelector('.close');
+
+closeButton.addEventListener('click', () => {
+    const cardModal = document.getElementById('cardModal');
+    closeCardModal();
+});
+
+function closeCardModal() {
+    // Hide modal
+    const cardModal = document.getElementById('cardModal');
+    cardModal.style.display = 'none';
+
+    // Hide backdrop
+    const backdrop = document.querySelector('.backdrop');
+    backdrop.classList.remove('show');
+}
+
+
+window.addEventListener('resize', function () {
+    // Update the layout of the page
+    // Get the width of the window
+    const windowWidth = window.innerWidth;
+
+    // Set the width of the .boards element to be 100% of the window width
+    const boards = document.querySelector('.boards');
+    boards.style.width = `${windowWidth}px`;
+});
