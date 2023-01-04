@@ -8,7 +8,7 @@
             <div class="dropzone">
                 {% for card in cards %}
                     {% if card.column == "backlog"%}
-                        <div class="card" draggable="true" data-card-id="{{ card.card_id }}">
+                        <div class="card" draggable="true" data-card-id="{{ card.card_id }}" data-column="{{ card.column }}">
                             <div class="status green"></div>
                             <div class="card-right">
                                 <div class="card-head">
@@ -33,13 +33,13 @@
         </div>
         <div class="board">
             <div class="board-header">
-                <h3>Ready to Play</h3>
+                <h3>Ready-to-Play</h3>
                 <button class="create-card-button">+</button>
             </div>
             <div class="dropzone">
                 {% for card in cards %}
                     {% if card.column == "ready-to-play"%}
-                        <div class="card" draggable="true" data-card-id="{{ card.card_id }}">
+                        <div class="card" draggable="true" data-card-id="{{ card.card_id }}" data-column="{{ card.column }}">
                             <div class="status green"></div>
                             <div class="card-right">
                                 <div class="card-head">
@@ -64,13 +64,13 @@
         </div>
         <div class="board">
             <div class="board-header">
-                <h3>In Progress</h3>
+                <h3>In-Progress</h3>
                 <button class="create-card-button">+</button>
             </div>
             <div class="dropzone">
                 {% for card in cards %}
                     {% if card.column == "in-progress"%}
-                        <div class="card" draggable="true" data-card-id="{{ card.card_id }}">
+                        <div class="card" draggable="true" data-card-id="{{ card.card_id }}" data-column="{{ card.column }}">
                             <div class="status green"></div>
                             <div class="card-right">
                                 <div class="card-head">
@@ -95,13 +95,13 @@
         </div>
         <div class="board">
             <div class="board-header">
-                <h3>Ready for Deploy</h3>
+                <h3>Ready-for-Deploy</h3>
                 <button class="create-card-button">+</button>
             </div>
             <div class="dropzone">
                 {% for card in cards %}
                     {% if card.column == "ready-for-deploy"%}
-                        <div class="card" draggable="true" data-card-id="{{ card.card_id }}">
+                        <div class="card" draggable="true" data-card-id="{{ card.card_id }}" data-column="{{ card.column }}">
                             <div class="status green"></div>
                             <div class="card-right">
                                 <div class="card-head">
@@ -132,7 +132,7 @@
             <div class="dropzone">
                 {% for card in cards %}
                     {% if card.column == "done"%}
-                        <div class="card" draggable="true" data-card-id="{{ card.card_id }}">
+                        <div class="card" draggable="true" data-card-id="{{ card.card_id }}" data-column="{{ card.column }}">
                             <div class="status green"></div>
                             <div class="card-right">
                                 <div class="card-head">

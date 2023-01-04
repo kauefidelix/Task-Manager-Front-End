@@ -67,9 +67,39 @@ function dragleave() {
 }
 
 function drop() {
-    // log('DROPZONE: dropped ')
-    this.classList.remove('over')
+    // this = dropzone
+    this.classList.remove('over');
+  
+    // Get the id of the card being dragged
+    const cardBeingDragged = document.querySelector('.is-dragging');
+    const cardId = cardBeingDragged.dataset.cardId;
+  
+    // Get the new column that the card was dropped in
+    const newColumn = this.parentNode.querySelector('h3').textContent.toLowerCase()
+  
+    // Update the column of the card on the server
+    updateCardColumn(cardId, newColumn);
 }
+
+function update_card_column(card_id, new_column) {
+    // Send a PATCH request to the server to update the column of the card
+    fetch(`/cards/${card_id}/update_column`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            column: new_column
+        })
+    })
+    .then(response => response.json())
+    .then(json => {
+        // Update the card element with the new column value
+        const cardElement = document.querySelector(`[data-card-id='${card_id}']`);
+        cardElement.dataset.column = new_column;
+    });
+}
+  
 
 function showCardModal() {
     // Get card information

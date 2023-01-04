@@ -23,4 +23,5 @@ urlpatterns = [
     path('first_app/', include('core.urls')),
     path('admin/', admin.site.urls),
     path('cards/<uuid:card_id>/', views.card_detail, name='card_detail'),
+    path('cards/<uuid:card_id>/update_column', views.update_card_column, name='update_card_column'),
 ]
