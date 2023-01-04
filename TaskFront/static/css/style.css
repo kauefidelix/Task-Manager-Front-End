@@ -26,6 +26,38 @@ body {
   width: calc(100% - 200px);
   height: 100%;
   width: 100%;
+  position: relative;
+}
+
+.board-header {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.create-card-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: #5e6c84;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  position: absolute;
+  right: 8px;
+  cursor: pointer;
+}
+
+.create-card-button:hover {
+  background: #727272;
+}
+
+.create-card-button:active {
+  background: #9d9d9d;
 }
 
 .board h3 {
