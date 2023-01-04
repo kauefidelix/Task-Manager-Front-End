@@ -78,7 +78,7 @@ function drop() {
    const cardId = cardBeingDragged.dataset.cardId;
  
    // Get the new column that the card was dropped in
-   const newColumn = this.parentNode.querySelector('h3').textContent.toLowerCase()
+   const newColumn = this.parentNode.querySelector('h3').getAttribute('id').toLowerCase()
  
    // Update the column of the card on the server
    update_card_column(cardId, newColumn);
