@@ -1,39 +1,40 @@
-<div class="card-detail" data-card-id="{{ card.card_id }}">
+<div  class="card-detail" data-card-id="{{ card.card_id }}">
     <div class="card-title">
-      <h1>{{ card.name }}</h1>
+      <h1 contenteditable="true">{{ card.name }}</h1>
       <button class="close">&times;</button>
     </div>
     <div class="card-wrapper">
       <div class="card-content-wrapper">
         <div class="card-content">
-          <pre>{{ card.content }}</pre>
+          <pre contenteditable="true">{{ card.content }}</pre>
         </div>
         <div class="card-info">
           <div class="card-info-title">Additional Information:</div>
           <div class="card-info-item">
             <div class="card-info-label">Column:</div>
-            <div class="card-info-value">{{ card.column }}</div>
+            <div contenteditable="true" class="card-info-value column">{{ card.column }}</div>
           </div>
           <div class="card-info-item">
             <div class="card-info-label">Creation Date:</div>
-            <div class="card-info-value">{{ card.creation_date }}</div>
+            <div contenteditable="true" class="card-info-value">{{ card.creation_date }}</div>
           </div>
           <div class="card-info-item">
             <div class="card-info-label">Last Modified:</div>
-            <div class="card-info-value">{{ card.last_modified }}</div>
+            <div contenteditable="true" class="card-info-value">{{ card.last_modified }}</div>
           </div>
           <div class="card-info-item">
             <div class="card-info-label">Assignee:</div>
-            <div class="card-info-value">{{ card.assignee }}</div>
+            <div contenteditable="true" class="card-info-value">{{ card.assignee }}</div>
           </div>
           <div class="card-info-item">
             <div class="card-info-label">Type:</div>
-            <div class="card-info-value">{{ card.card_type }}</div>
+            <div contenteditable="true" class="card-info-value">{{ card.card_type }}</div>
           </div>
           <div class="card-info-item">
             <div class="card-info-label">Epic Link:</div>
-            <div class="card-info-value">{{ card.epic_link }}</div>
+            <div contenteditable="true" class="card-info-value">{{ card.epic_link }}</div>
           </div>
+          
         </div>
       </div>
     </div>

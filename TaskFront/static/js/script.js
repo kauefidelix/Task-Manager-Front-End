@@ -6,6 +6,7 @@ function log(message) {
 /** app */
 const cards = document.querySelectorAll('.card')
 const dropzones = document.querySelectorAll('.dropzone')
+const csrfToken = document.querySelector('meta[name=csrf-token]').getAttribute('content');
 
 
 /** our cards */
@@ -72,24 +73,21 @@ function drop() {
     log('drop ')
     // this = dropzone
     this.classList.remove('over');
-  
-   // Get the id of the card being dragged
-   const cardBeingDragged = document.querySelector('.is-dragging');
-   const cardId = cardBeingDragged.dataset.cardId;
- 
-   // Get the new column that the card was dropped in
-   const newColumn = this.parentNode.querySelector('h3').getAttribute('id').toLowerCase()
- 
-   // Update the column of the card on the server
-   update_card_column(cardId, newColumn);
-   log(`Updating card ${cardId} to column ${newColumn}`)
+
+    // Get the id of the card being dragged
+    const cardBeingDragged = document.querySelector('.is-dragging');
+    const cardId = cardBeingDragged.dataset.cardId;
+
+    // Get the new column that the card was dropped in
+    const newColumn = this.parentNode.querySelector('h3').getAttribute('id').toLowerCase()
+
+    // Update the column of the card on the server
+    update_card_column(cardId, newColumn);
+    log(`Updating card ${cardId} to column ${newColumn}`)
 }
 
 function update_card_column(card_id, new_column) {
     log(`Updating card ${card_id} to column ${new_column}`)
-    // Get the CSRF token
-    const csrfToken = document.querySelector('meta[name=csrf-token]').getAttribute('content');
-    
     // Send a PATCH request to the server to update the column of the card
     fetch(`/cards/${card_id}/update_column/${new_column}`, {
         method: 'PATCH',
@@ -98,15 +96,15 @@ function update_card_column(card_id, new_column) {
             'X-CSRFToken': csrfToken
         },
     })
-    .then(response => response.json())
-    .then(json => {
-        // Update the card element with the new column value
-        const cardElement = document.querySelector(`[data-card-id='${card_id}']`);
-        cardElement.dataset.column = new_column;
-    });
+        .then(response => response.json())
+        .then(json => {
+            // Update the card element with the new column value
+            const cardElement = document.querySelector(`[data-card-id='${card_id}']`);
+            cardElement.dataset.column = new_column;
+        });
 }
 
-  
+
 
 function showCardModal() {
     // Get card information
@@ -136,12 +134,7 @@ function showCardModal() {
             closeButton.addEventListener('click', closeCardModal);
         });
 }
-const closeButton = document.querySelector('.close');
 
-closeButton.addEventListener('click', () => {
-    const cardModal = document.getElementById('cardModal');
-    closeCardModal();
-});
 
 function closeCardModal() {
     // Hide modal
@@ -152,6 +145,55 @@ function closeCardModal() {
     const backdrop = document.querySelector('.backdrop');
     backdrop.classList.remove('show');
 }
+const saveButton = document.querySelector('.saveButton');
+if (saveButton) {
+  saveButton.addEventListener('click', saveChanges);
+}
+// Select the elements that should be editable
+const editableElements = document.querySelectorAll('[contenteditable="true"]');
+
+// Add the 'dblclick' event listener to each element
+editableElements.forEach((element) => {
+    element.addEventListener('dblclick', (event) => {
+        // When the element is double clicked, make it editable
+        event.target.setAttribute('contenteditable', 'true');
+    });
+});
+
+function saveChanges() {
+    // Get the card information from the card_detail template
+    const cardId = document.querySelector('.card-detail').dataset.cardId;
+    const cardName = document.querySelector('.card-title h1').textContent;
+    const cardContent = document.querySelector('.card-content pre').textContent;
+    const cardColumn = document.querySelector('.card-detail .column').textContent;
+    // Send a PATCH request to update the card information in the database
+    log(`Updating card ${cardId} with name ${cardName} and content ${cardContent}`)
+    fetch(`/cards/${cardId}/saveCardInfo`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken,
+        },
+        body: JSON.stringify({
+            name: cardName,
+            content: cardContent,
+            column: cardColumn,
+        }),
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            // Update the card information in the Kanban board
+            const cardElements = document.querySelectorAll(`.card[data-card-id="${cardId}"] .card-right .content`);
+            cardElements.forEach((cardElement) => {
+                cardElement.textContent = data.name;
+            });
+
+            // Close the card_detail modal
+            const modal = document.getElementById('cardModal');
+            modal.style.display = 'none';
+        });
+}
+
 
 
 window.addEventListener('resize', function () {
