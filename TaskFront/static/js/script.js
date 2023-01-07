@@ -192,6 +192,45 @@ function saveChanges() {
         });
 }
 
+// Select all of the create card buttons
+const createCardButtons = document.querySelectorAll('.create-card-button');
+
+// Add a click event listener to each button
+createCardButtons.forEach((button) => {
+    button.addEventListener('click', (event) => {
+        const column = event.target.parentElement.querySelector('h3').id;
+        createCard(column)
+    });
+});
+
+function createCard(column) {
+    const cardData = {
+        name: 'Novo Card',  // required field
+        column: column,  // required field
+        creation_date: new Date().toISOString().slice(0, 10),  // required field
+        last_modified: new Date().toISOString().slice(0, 10),  // required field
+    };
+    // Send a POST request to the server to create a new card in the database
+    fetch('/cards/create', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken,  // Include CSRF token in headers
+        },
+        body: JSON.stringify(cardData),
+    })
+}
+
+
+// Get the width of the window
+const windowWidth = window.innerWidth;
+
+// Set the width of the .boards element to be 100% of the window width
+const boards = document.querySelector('.boards');
+boards.style.width = `${windowWidth}px`;
+
+// Add a resize event listener to the window
+
 
 
 window.addEventListener('resize', function () {
