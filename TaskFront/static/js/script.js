@@ -188,9 +188,7 @@ function saveChanges() {
                 cardElement.textContent = data.name;
             });
 
-            // Close the card_detail modal
-            const modal = document.getElementById('cardModal');
-            modal.style.display = 'none';
+            
         });
 }
 

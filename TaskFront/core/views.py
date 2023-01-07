@@ -27,7 +27,7 @@ def update_card_column(request, card_id, newColumn):
     card.column = newColumn
     card.save()
 
-    return redirect('index')
+    return JsonResponse({'column': card.column})
 
 def save_card_info(request, card_id):
     # Parse the request body to get the card information
@@ -44,6 +44,5 @@ def save_card_info(request, card_id):
     card.save()
 
     # Return the updated card information
-    data = {'name': card.name, 'content': card.content, 'column': card.column}
-    return HttpResponse(json.dumps(data), content_type='application/json'), render(request, 'card_detail.html', {'card': card})
+    return JsonResponse({'name': card.name, 'content': card.content, 'column': card.column})
 
