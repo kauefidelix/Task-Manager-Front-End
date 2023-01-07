@@ -47,11 +47,20 @@ def create_card(request):
             creation_date = datetime.datetime.strptime(data['creation_date'], '%Y-%m-%d').date(),
             last_modified = datetime.datetime.strptime(data['last_modified'], '%Y-%m-%d').date(),
         )
-        return render(request, 'index.html', {'cards': cards, 'today': today})
-    return render(request, 'index.html', {'cards': cards, 'today': today})
+        return HttpResponse(status=200)
+    return HttpResponse(status=200)
+
+def delete_card(request, card_id):
+    if request.method in ['POST', 'DELETE']:
+        Card.objects.filter(card_id=card_id).delete()
+        return HttpResponse(status=200)
+    else:
+        return HttpResponse(status=405)  # Method Not Allowed
+
 
 def cards(request):
     cards = Card.objects.all()
-    return JsonResponse(cards, safe=False)
+    today = date.today()
+    return render(request, 'index.html', {'cards': cards, 'today': today})
 
 

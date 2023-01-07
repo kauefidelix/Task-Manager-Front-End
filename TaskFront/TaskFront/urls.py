@@ -27,4 +27,5 @@ urlpatterns = [
     path('cards/<uuid:card_id>/update_column/<str:newColumn>', views.update_card_column, name='update_card_column'),
     path('cards/create', views.create_card, name='create_card'),
     path('cards', views.cards, name='cards'),
+    path('cards/<uuid:card_id>/delete', views.delete_card, name='delete_card')
 ]

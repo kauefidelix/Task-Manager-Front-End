@@ -444,3 +444,28 @@ main {
 .saveButton:active{
   background-color: hsla(204, 67%, 33%, 0.568);
 }
+
+.delete-button {
+  align-self: flex-end;
+  background-color: #b32020;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.delete-button:hover {
+  background-color: #7e1111;
+}
+.delete-button:active {
+  background-color: #4c000081;
+}

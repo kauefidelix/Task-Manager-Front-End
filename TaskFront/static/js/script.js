@@ -219,7 +219,46 @@ function createCard(column) {
         },
         body: JSON.stringify(cardData),
     })
+    .then((response) => {
+        // Once the card has been created, update the Kanban board by reloading the page
+        if (response.status === 200) {
+            //reload page
+            window.location.reload();
+        }
+    });
 }
+const deleteButton = document.querySelector('.delete-button');
+if (deleteButton) {
+  deleteButton.addEventListener('click', deleteCard);
+}
+
+function deleteCard() {
+    // Get the card ID from the card detail template
+    const cardId = document.querySelector('.card-detail').dataset.cardId;
+    fetch(`/cards/${cardId}/delete`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken,  // Include CSRF token in headers
+        },
+    })
+        .then((response) => {
+            // Once the card has been deleted, update the Kanban board by
+            // making a GET request to retrieve the updated list of cards
+            if (response.status === 200) {
+                //reload page
+                window.location.reload();
+            }
+        });
+}
+
+
+
+
+
+
+
+
 
 
 // Get the width of the window
